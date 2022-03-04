@@ -1,7 +1,7 @@
-from asyncio.format_helpers import _format_callback_source
 import os
+from dotenv import load_dotenv
 
-
+load_dotenv(dotenv_path=r'configuration\.env')
 class Configuration(object):
     
     """ Configuration options shared for all instances
@@ -11,8 +11,7 @@ class Configuration(object):
     SECRET_KEY=os.getenv("SECRET_KEY")
     SQLALCHEMY_DATABASE_URI = os.getenv("SQLALCHEMY_DATABASE_URI")
     SQLALCHEMY_TRACK_MODIFICATIONS = os.getenv("SQLALCHEMY_TRACK_MODIFICATIONS")
-    
-    
+        
 
 class DevConfig(Configuration):
     
@@ -20,15 +19,14 @@ class DevConfig(Configuration):
     """
     
     DEBUG = True
-    
-
+      
 class TestingConfig(Configuration):
     """ Testing cconfiguration for Flask app
     """
     
     TESTING = True
     # Specific database for testing
-    # SQLALCHEMY_DATABASE_URI =
+    SQLALCHEMY_DATABASE_URI = "postgresql://admin_user:password@localhost:5432/task_db"
     
 class ProductionConfig(Configuration):
     
