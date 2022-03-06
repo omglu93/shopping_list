@@ -1,6 +1,6 @@
 from src import create_app
 
-app = create_app("dev")
+app = create_app("product")
 
 if __name__ == "__main__":
     app.run()

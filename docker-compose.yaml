@@ -1,0 +1,28 @@
+version: "3"
+services:
+  web:
+    links:
+      - "db"
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+    env_file:
+      - /configuration\.env
+
+  db:
+    image: postgres:10
+    restart: always
+    environment:
+      POSTGRES_USER: admin_user
+      POSTGRES_PASSWORD: password
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: task_db
+    ports:
+      - "5432:5432"
+    expose:
+        - 5432

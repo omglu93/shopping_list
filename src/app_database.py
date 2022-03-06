@@ -80,6 +80,25 @@ class ShoppingList(db.Model):
     def __repr__(self) -> str:
         return f"User: {self.name} /n items: {self.items}"
     
+
+    def __init__(self, name, user_id) -> None:
+        
+        self.name = name
+        self.user_id = user_id
+      
+    def save(self):
+        """Saves list to database
+        """
+        db.session.add(self)
+        db.session.commit()
+        
+    def delete(self):
+        """Deletes list from database
+        """
+        db.session.delete(self)
+        db.session.commit()
+    
+    
 class Item(db.Model):
     
     """Table that contains the items for each shopping list
@@ -89,7 +108,6 @@ class Item(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
-    price = db.Column(db.Float())
     quantity = db.Column(db.Float())
     owner = db.Column(db.Integer,
                       db.ForeignKey(ShoppingList.id))
@@ -102,8 +120,26 @@ class Item(db.Model):
                               onupdate=db.func.current_timestamp())
     
     def __repr__(self) -> str:
-        return f"Item name: {self.name} /n price: {self.price}" \
-               f" /n item quantity{self.quantity}"
+        return f"Item name: {self.name} " \
+               f"item quantity{self.quantity}"
+    
+    def __init__(self, name, quantity, owner) -> None:
+        
+        self.name = name
+        self.quantity = quantity
+        self.owner = owner
+      
+    def save(self):
+        """Saves item info to database
+        """
+        db.session.add(self)
+        db.session.commit()
+        
+    def delete(self):
+        """Deletes item info from database
+        """
+        db.session.delete(self)
+        db.session.commit()
                
 class UserCredentials(db.Model):
     
