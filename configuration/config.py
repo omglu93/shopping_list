@@ -53,7 +53,6 @@ app_config = {"dev": DevConfig,
 if __name__ == "__main__":
         
     
-    print(app_config["product"].SQLALCHEMY_TRACK_MODIFICATIONS)
         
     POSTGRES_USER = os.getenv("POSTGRES_USER")
     POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
@@ -62,7 +61,3 @@ if __name__ == "__main__":
     POSTGRES_DB = os.getenv("POSTGRES_DB")
     POSTGRES_DB="localhost"
     #SQLALCHEMY_TRACK_MODIFICATIONS = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
-    
-
-    
-    print(os.listdir(r"."))
