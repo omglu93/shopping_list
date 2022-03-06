@@ -16,6 +16,7 @@ First, create a db with the name task_db. After that run the below commands:
 
 `python db db upgrade`
 
+Last thing, change create_app("product") in app.py to create_app("test")
 
 #### API Endpoints
 
